@@ -1,0 +1,28 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <title>Flood Prediction</title>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Flood Prediction</h1>
+      <form method="POST">
+        {% for i in range(12) %}
+        <label for="month{{ i }}">Month {{ i+1 }} Rainfall:</label>
+        <input type="text" id="month{{ i }}" name="month{{ i }}">
+        <br>
+        {% endfor %}
+        <button type="submit">Predict</button>
+      </form>
+      {% if knn_pred is not none %}
+      <h2>Predictions</h2>
+      <p>KNN Prediction: {{ knn_pred }}%</p>
+      <p>Logistic Regression Prediction: {{ lr_pred }}%</p>
+      <p>SVM Prediction: {{ svc_pred }}%</p>
+      <img src="data:image/png;base64,{{ graph_url }}" alt="Prediction Graph">
+      {% endif %}
+    </div>
+  </body>
+</html>
